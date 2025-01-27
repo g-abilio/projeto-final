@@ -1,16 +1,16 @@
-#ifndef TIC_TAC_TOE_HPP
-#define TIC_TAC_TOE_HPP
+#ifndef CONNECT_FOUR_HPP
+#define CONNECT_FOUR_HPP
 
 #include "jogo_tabuleiro.hpp"
 #include <iostream>
 #include <stdexcept>
 
-class TicTacToe : public JogoTabuleiro {
+class ConnectFour : public JogoTabuleiro {
 public:
-    // construtor para inicializar o tabuleiro 3x3
-    TicTacToe() {
-        linhas = 3;
-        colunas = 3;
+    // construtor para inicializar o tabuleiro com tamanho padrao (6x7)
+    ConnectFour() {
+        linhas = 6;
+        colunas = 7;
         tabuleiro = std::vector<std::vector<int>>(linhas, std::vector<int>(colunas, 0));
     }
 
@@ -33,43 +33,67 @@ public:
         std::cout << std::endl;
     }
 
-    // realiza uma jogada inserindo a peca na posicao especificada
-    bool realizar_jogada(int jogador, int linha, int coluna) {
-        if (linha < 0 || linha >= linhas || coluna < 0 || coluna >= colunas) {
-            throw std::invalid_argument("posicao fora do limite");
+    // realiza uma jogada inserindo a peca na coluna especificada
+    bool realizar_jogada(int jogador, const std::vector<int>& posicao) override {
+        if (posicao.size() != 1) {
+            throw std::invalid_argument("connect four requer apenas a coluna");
+        }
+        int coluna = posicao[0];
+
+        if (coluna < 0 || coluna >= colunas) {
+            throw std::invalid_argument("coluna fora do limite");
         }
 
-        if (tabuleiro[linha][coluna] != 0) {
-            throw std::runtime_error("posicao ja ocupada");
+        for (int i = linhas - 1; i >= 0; --i) {
+            if (tabuleiro[i][coluna] == 0) {
+                tabuleiro[i][coluna] = jogador;
+                return true;
+            }
         }
 
-        tabuleiro[linha][coluna] = jogador;
-        return true;
+        throw std::runtime_error("coluna cheia");
     }
 
     // verifica se o jogador atual venceu o jogo
     bool verificar_vitoria(int jogador) const override {
         // verifica linhas
         for (int i = 0; i < linhas; ++i) {
-            if (tabuleiro[i][0] == jogador && tabuleiro[i][1] == jogador && tabuleiro[i][2] == jogador) {
-                return true;
+            for (int j = 0; j <= colunas - 4; ++j) {
+                if (tabuleiro[i][j] == jogador && tabuleiro[i][j + 1] == jogador &&
+                    tabuleiro[i][j + 2] == jogador && tabuleiro[i][j + 3] == jogador) {
+                    return true;
+                }
             }
         }
 
         // verifica colunas
         for (int j = 0; j < colunas; ++j) {
-            if (tabuleiro[0][j] == jogador && tabuleiro[1][j] == jogador && tabuleiro[2][j] == jogador) {
-                return true;
+            for (int i = 0; i <= linhas - 4; ++i) {
+                if (tabuleiro[i][j] == jogador && tabuleiro[i + 1][j] == jogador &&
+                    tabuleiro[i + 2][j] == jogador && tabuleiro[i + 3][j] == jogador) {
+                    return true;
+                }
             }
         }
 
-        // verifica diagonais
-        if (tabuleiro[0][0] == jogador && tabuleiro[1][1] == jogador && tabuleiro[2][2] == jogador) {
-            return true;
+        // verifica diagonais (cima-esquerda para baixo-direita)
+        for (int i = 0; i <= linhas - 4; ++i) {
+            for (int j = 0; j <= colunas - 4; ++j) {
+                if (tabuleiro[i][j] == jogador && tabuleiro[i + 1][j + 1] == jogador &&
+                    tabuleiro[i + 2][j + 2] == jogador && tabuleiro[i + 3][j + 3] == jogador) {
+                    return true;
+                }
+            }
         }
 
-        if (tabuleiro[0][2] == jogador && tabuleiro[1][1] == jogador && tabuleiro[2][0] == jogador) {
-            return true;
+        // verifica diagonais (baixo-esquerda para cima-direita)
+        for (int i = 3; i < linhas; ++i) {
+            for (int j = 0; j <= colunas - 4; ++j) {
+                if (tabuleiro[i][j] == jogador && tabuleiro[i - 1][j + 1] == jogador &&
+                    tabuleiro[i - 2][j + 2] == jogador && tabuleiro[i - 3][j + 3] == jogador) {
+                    return true;
+                }
+            }
         }
 
         return false;

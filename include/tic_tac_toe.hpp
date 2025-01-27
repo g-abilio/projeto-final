@@ -34,7 +34,13 @@ public:
     }
 
     // realiza uma jogada inserindo a peca na posicao especificada
-    bool realizar_jogada(int jogador, int linha, int coluna) {
+    bool realizar_jogada(int jogador, const std::vector<int>& posicao) override {
+        if (posicao.size() != 2) {
+            throw std::invalid_argument("tic tac toe requer linha e coluna");
+        }
+        int linha = posicao[0];
+        int coluna = posicao[1];
+
         if (linha < 0 || linha >= linhas || coluna < 0 || coluna >= colunas) {
             throw std::invalid_argument("posicao fora do limite");
         }

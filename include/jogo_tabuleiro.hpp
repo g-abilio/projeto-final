@@ -13,7 +13,7 @@ public:
     // metodos abstratos
     virtual void inicializar_tabuleiro() = 0;
     virtual void imprimir_tabuleiro() const = 0;
-    virtual bool realizar_jogada(int jogador, int coluna) = 0;
+    virtual bool realizar_jogada(int jogador, const std::vector<int>& posicao) = 0;
     virtual bool verificar_vitoria(int jogador) const = 0;
 
     // metodo concreto para limpar o tabuleiro
