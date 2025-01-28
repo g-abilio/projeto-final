@@ -1,5 +1,5 @@
 all:
-	g++ src/teste_01.cpp -Iinclude -o connect_four
+	g++ --std=c++11 src/partida.cpp src/main.cpp -Iinclude -o main_partida
 
 run: all
-	./connect_four
+	./main_partida
