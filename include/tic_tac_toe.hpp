@@ -11,7 +11,7 @@ public:
     TicTacToe() {
         linhas = 3;
         colunas = 3;
-        tabuleiro = std::vector<std::vector<int>>(linhas, std::vector<int>(colunas, 0));
+        tabuleiro = std::vector<std::vector<int> >(linhas, std::vector<int>(colunas, 0));
     }
 
     // inicializa o tabuleiro, preenchendo com zeros

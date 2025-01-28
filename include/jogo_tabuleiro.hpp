@@ -16,6 +16,10 @@ public:
     virtual bool realizar_jogada(int jogador, const std::vector<int>& posicao) = 0;
     virtual bool verificar_vitoria(int jogador) const = 0;
 
+    // getters
+    int get_linhas() const { return linhas; }
+    int get_colunas() const { return colunas; }
+
     // metodo concreto para limpar o tabuleiro
     void limpar_tabuleiro() {
         for (auto& linha : tabuleiro) {
@@ -24,7 +28,7 @@ public:
     }
 
 protected:
-    std::vector<std::vector<int>> tabuleiro; // representacao generica do tabuleiro
+    std::vector<std::vector<int> > tabuleiro; // representacao generica do tabuleiro
     int linhas;
     int colunas;
 };

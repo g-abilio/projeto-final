@@ -12,7 +12,7 @@ public:
     Reversi() {
         linhas = 8;
         colunas = 8;
-        tabuleiro = std::vector<std::vector<int>>(linhas, std::vector<int>(colunas, 0));
+        tabuleiro = std::vector<std::vector<int> >(linhas, std::vector<int>(colunas, 0));
     }
 
     // inicializa o tabuleiro, preenchendo com zeros e colocando as pecas iniciais
