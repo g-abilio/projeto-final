@@ -11,8 +11,8 @@ protected:
     string _apelido;
     string _nome;
     int reversi[2];
-    int lig4[2];
-    int velha[2];
+    int connect4[2];
+    int tictactoe[2];
 
 public:
 
@@ -20,17 +20,19 @@ public:
 
     //~Jogador();
 
-    void atualizarDadosJogador(string jogo, char resultado);
     string getNome();
     string getApelido();
 
     int* getHistReversi ();
-    int* getHistLig4 ();
-    int* getHistVelha ();
+    int* getHistConnect4 ();
+    int* getHistTicTacToe ();
 
     void addHistReversi(int vitorias, int derrotas);
-    void addHistLig4(int vitorias, int derrotas);
-    void addHistVelha(int vitorias, int derrotas);
+    void addHistConnect4(int vitorias, int derrotas);
+    void addHistTicTacToe(int vitorias, int derrotas);
+
+    int getTotalVitorias();
+    int getTotalDerrotas();
 };
 
 #endif
