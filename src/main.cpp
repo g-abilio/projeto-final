@@ -10,12 +10,33 @@
 #include <vector>
 #include <algorithm>
 
-// Struct auxiliar para ler as linhas do arquivo e gravar na classe jogador
+/**
+ * @struct Data
+ * @brief Representa a leitura de uma linha.
+ *
+ * Seu objetivo é dividir e guardar as linhas lidas do arquivo em
+ * strings ou ints que posteriormente serao atribuidas a jogadores.
+ *
+ * Possui a string nome, apelido e um vetor de inteiros que representará
+ * as vitórias e derrotas em cada um dos jogos
+ */
+
+
 struct Data {
     std::string apelido;
     std::string nome;
     std::vector<int> numeros;
 };
+
+/**
+ * @brief Verifica se uma string é um número.
+ *
+ * Esta função confere se o texto lido é um digito.
+ *
+ * @param string - palavra a ser verificada.
+ * @return true se a string de entrada é um número.
+ * @return false se a string de entrada não é um número.
+ */
 
 bool isNumber(const std::string& str) {
     if (str.empty()) return false;
@@ -26,6 +47,16 @@ bool isNumber(const std::string& str) {
     }
     return true;
 }
+
+/**
+ * @brief Lê uma linha e separa em uma string(apelido),
+ * várias string (nome) e números de vitorias e derrotas.
+ *
+ * Esta função separa o texto lido e guarda na classe Jogador.
+ *
+ * @param linha - linha de texto lida.
+ * @return Um objeto da classe Jogador com todos os atributos lidos.
+ */
 
 // Função para ler a linha do arquivo e guardar as informa��es na classe jogador
 Jogador lerLinha(const std::string& linha) {
@@ -62,11 +93,46 @@ Jogador lerLinha(const std::string& linha) {
     return Jogador_x;
 }
 
+
+/**
+ * @brief Faz comparações com base em critérios de ordenação.
+ *
+ * Esta função compara o total de vitórias de um jogador para
+ * ordenar num ranking, desempatando pelo total de derrotas.
+ *
+ * @param Jogador a - passado por referência.
+ * @param Jogador b - passado por referência.
+ * @return true Se o jogador 'a' deve vir antes de 'b' no ranking.
+ * @return false Se o jogador 'b' deve vir antes de 'a' no ranking.
+ *
+ * @note Critérios de ordenação:
+ * - Prioriza jogadores com mais vitórias.
+ * - Em caso de empate nas vitórias, prioriza jogadores com menos derrotas.
+ */
+
 bool compararRankingGeral(Jogador& a, Jogador& b) {
     if (a.getTotalVitorias() != b.getTotalVitorias())
         return a.getTotalVitorias() > b.getTotalVitorias(); // Mais vitórias primeiro
     return a.getTotalDerrotas() < b.getTotalDerrotas(); // Menos derrotas como desempate
 }
+
+/**
+ * @brief Faz comparações com base em critérios de ordenação.
+ *
+ * Esta função compara o total de vitórias de um jogador para
+ * ordenar num ranking, desempatando pelo total de derrotas
+ * no jogo Reversi.
+ *
+ * @param Jogador a - passado por referência.
+ * @param Jogador b - passado por referência.
+ * @return true Se o jogador 'a' deve vir antes de 'b' no ranking.
+ * @return false Se o jogador 'b' deve vir antes de 'a' no ranking.
+ *
+ * @note Critérios de ordenação:
+ * - Prioriza jogadores com mais vitórias.
+ * - Em caso de empate nas vitórias, prioriza jogadores com menos derrotas.
+ */
+
 
 bool compararRankingReversi(Jogador& a, Jogador& b) {
     int* vetor_a = a.getHistReversi();
@@ -76,6 +142,23 @@ bool compararRankingReversi(Jogador& a, Jogador& b) {
     return vetor_a[1] < vetor_b[1];
 }
 
+/**
+ * @brief Faz comparações com base em critérios de ordenação.
+ *
+ * Esta função compara o total de vitórias de um jogador para
+ * ordenar num ranking, desempatando pelo total de derrotas
+ * no jogo connect4.
+ *
+ * @param Jogador a - passado por referência.
+ * @param Jogador b - passado por referência.
+ * @return true Se o jogador 'a' deve vir antes de 'b' no ranking.
+ * @return false Se o jogador 'b' deve vir antes de 'a' no ranking.
+ *
+ * @note Critérios de ordenação:
+ * - Prioriza jogadores com mais vitórias.
+ * - Em caso de empate nas vitórias, prioriza jogadores com menos derrotas.
+ */
+
 bool compararRankingConnect4(Jogador& a,Jogador& b) {
     int* vetor_a = a.getHistConnect4();
     int* vetor_b = b.getHistConnect4();
@@ -83,6 +166,23 @@ bool compararRankingConnect4(Jogador& a,Jogador& b) {
         return vetor_a[0] > vetor_b[0];
     return vetor_a[1] < vetor_b[1];
 }
+
+/**
+ * @brief Faz comparações com base em critérios de ordenação.
+ *
+ * Esta função compara o total de vitórias de um jogador para
+ * ordenar num ranking, desempatando pelo total de derrotas
+ * no jogo da velha.
+ *
+ * @param Jogador a - passado por referência.
+ * @param Jogador b - passado por referência.
+ * @return true Se o jogador 'a' deve vir antes de 'b' no ranking.
+ * @return false Se o jogador 'b' deve vir antes de 'a' no ranking.
+ *
+ * @note Critérios de ordenação:
+ * - Prioriza jogadores com mais vitórias.
+ * - Em caso de empate nas vitórias, prioriza jogadores com menos derrotas.
+ */
 
 bool compararRankingTicTacToe(Jogador& a,Jogador& b) {
     int* vetor_a = a.getHistTicTacToe();
@@ -95,6 +195,15 @@ bool compararRankingTicTacToe(Jogador& a,Jogador& b) {
 using namespace std;
 
 int main() {
+
+/**
+ * @file jogadores.txt
+ * @brief Leitura do histórico dos jogadores gravados a cada execução.
+ *
+ * Este arquivo contém os atributos dos jogadores em ordem de leitura:
+ * apelido, nome, e seis inteiros que são as vitórias e derrotas nos jogos.
+ */
+
     //Abrir o arquivo
     std::ifstream arquivo("jogadores.txt");
 
@@ -120,6 +229,10 @@ int main() {
 
 
     arquivo.close();
+
+    /**
+    * @brief Variáveis inseridas para acessar as operações.
+    */
 
     std::string ler_entrada, apelido, nome;
     std:: string operacao, ordenar, apelido_j1, apelido_j2, jogo, tipo;
@@ -355,6 +468,14 @@ int main() {
         apelido.clear();
 
     }while (operacao != "FS");
+
+    /**
+    * @file jogadores.txt
+    * @brief Gravação do histórico dos jogadores após execução do código.
+    *
+    * Este arquivo grava os atributos dos jogadores após execuções
+    * de partidas e cadastro e remoção de jogadores.
+    */
 
     //Abrindo o arquivo para grava��o
     std::ofstream historico("jogadores.txt");
