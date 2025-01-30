@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Jogador.hpp"
+#include "partida.hpp"
 #include <fstream>
 #include <sstream>
 #include <string>
@@ -92,8 +93,6 @@ bool compararRankingTicTacToe(Jogador& a,Jogador& b) {
     return vetor_a[1] < vetor_b[1];
 }
 
-using namespace std;
-
 int main() {
     //Abrir o arquivo
     std::ifstream arquivo("jogadores.txt");
@@ -104,30 +103,34 @@ int main() {
         return 1;
     }
 
-    map<string,Jogador> jogadores_a;
-    map<string,Jogador> jogadores_n;
+    std::map<string,Jogador> jogadores_a;
+    std::map<string,Jogador> jogadores_n;
 
     //L� as linhas do arquivo e registra as informa��es dos jogadores em maps
     std::string linha;
 
-
     while (std::getline(arquivo, linha)) {
         Jogador Jogador1 = lerLinha(linha);
 
-        jogadores_a.insert(pair<string, Jogador>(Jogador1.getApelido(),Jogador1));
-        jogadores_n.insert(pair<string, Jogador>(Jogador1.getNome(),Jogador1));
+        jogadores_a.insert(std::pair<std::string, Jogador>(Jogador1.getApelido(),Jogador1));
+        jogadores_n.insert(std::pair<std::string, Jogador>(Jogador1.getNome(),Jogador1));
     }
-
 
     arquivo.close();
 
     std::string ler_entrada, apelido, nome;
-    std:: string operacao, ordenar, apelido_j1, apelido_j2, jogo, tipo;
+    std::string operacao, ordenar, apelido_j1, apelido_j2, jogo, tipo;
 
-    do{
+    do {
 
         // Recebe a linha digitada pelo usu�rio - a primeira string indica a opera��o
         std::getline(std::cin, ler_entrada);
+        
+        // não sei porque, mas parece ser necessario chamar getline duas vezes
+        // quando chama-se o EP... esse if é uma solucao temporaria
+        if (operacao == "EP") {
+            std::getline(std::cin, ler_entrada);
+        }
 
         std::istringstream ss(ler_entrada);
         ss >> operacao;
@@ -138,7 +141,6 @@ int main() {
         if (operacoes_validas.find(operacao) == operacoes_validas.end()){
             std::cout << "ERRO: Operacao invalida" << std::endl;
         }
-
 
         //Cadastrar jogador
         else if (operacao == "CJ"){
@@ -233,7 +235,7 @@ int main() {
         }
 
         //Executar partidas
-        else if (operacao == "EP"){
+        else if (operacao == "EP") {
             ss >> jogo;
             ss >> apelido_j1;
             ss >> apelido_j2;
@@ -256,18 +258,34 @@ int main() {
                     std::cout << "ERRO: Jogador 2 inexistente" << std::endl;
                 }
 
-            //else if(jogo == "R"){
-                //Inserir aqui o codigo para o jogo reversi
-            //}
+            else if((jogo == "R") || (jogo == "L") || (jogo == "V")) {
+                Partida partida; 
+                auto resultado_partida = partida.iniciar_jogo(jogo, apelido_j1, apelido_j2);
 
-            //else if(jogo == "L"){
-                //Inserir aqui o codigo para o jogo Lig4
-            //}
-
-            //else if(jogo == "V"){
-                //Inserir aqui o codigo para o jogo da velha
-            //}
-
+                if (resultado_partida == apelido_j1) {
+                    if (jogo == "R") {
+                        jogadores_a.at(apelido_j1).addHistReversi(1, 0);
+                        jogadores_a.at(apelido_j2).addHistReversi(0, 1);
+                    } else if (jogo == "L") {
+                        jogadores_a.at(apelido_j1).addHistConnect4(1, 0);
+                        jogadores_a.at(apelido_j2).addHistConnect4(0, 1);
+                    } else if (jogo == "V") {
+                        jogadores_a.at(apelido_j1).addHistTicTacToe(1, 0);
+                        jogadores_a.at(apelido_j2).addHistTicTacToe(0, 1);
+                    }
+                } else if (resultado_partida == apelido_j2) {
+                    if (jogo == "R") {
+                        jogadores_a.at(apelido_j2).addHistReversi(1, 0);
+                        jogadores_a.at(apelido_j1).addHistReversi(0, 1);
+                    } else if (jogo == "L") {
+                        jogadores_a.at(apelido_j2).addHistConnect4(1, 0);
+                        jogadores_a.at(apelido_j1).addHistConnect4(0, 1);
+                    } else if (jogo == "V") {
+                        jogadores_a.at(apelido_j2).addHistTicTacToe(1, 0);
+                        jogadores_a.at(apelido_j1).addHistTicTacToe(0, 1);
+                    }
+                }
+            }
         }
 
         //Pontuação dos jogadores
@@ -285,7 +303,6 @@ int main() {
             if(jogadores_a.empty()){
                 std::cout << "Nao ha jogadores cadastrados para rankear." << std::endl;
             }
-
 
             else if (tipos_validos.find(tipo) == tipos_validos.end()){
                 std::cout << "ERRO: O tipo de ranking selecionado eh invalido" << std::endl;
@@ -347,14 +364,13 @@ int main() {
             }
         }
 
-
         //Limpando as strings de leitura
         apelido_j1.clear();
         apelido_j2.clear();
         nome.clear();
         apelido.clear();
 
-    }while (operacao != "FS");
+    } while (operacao != "FS");
 
     //Abrindo o arquivo para grava��o
     std::ofstream historico("jogadores.txt");

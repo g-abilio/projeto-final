@@ -1,5 +1,4 @@
 #include "Jogador.hpp"
-
 #include <iostream>
 #include <string>
 

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <limits>
+#include <map>
 #include "partida.hpp"
 
 std::vector<int> Partida::ler_jogada(const JogoTabuleiro& jogo) {
@@ -61,16 +62,20 @@ std::vector<int> Partida::ler_jogada(const JogoTabuleiro& jogo) {
     return posicao;
 }
 
-void Partida::jogar_partida(JogoTabuleiro& jogo) {
+std::string Partida::jogar_partida(JogoTabuleiro& jogo, std::string jogador_1, std::string jogador_2) {
     jogo.inicializar_tabuleiro();
-    int jogador_atual = 1; 
+    int jogador_atual = 1;
+    std::map<int, std::string> num_jogador;  
     bool vitoria = false;
     int jogadas_realizadas = 0;
+
+    num_jogador.insert(std::pair<int, std::string>(1, jogador_1));
+    num_jogador.insert(std::pair<int, std::string>(2, jogador_2));
 
     while (!vitoria && jogadas_realizadas < jogo.get_linhas() * jogo.get_colunas()) {
         jogo.imprimir_tabuleiro();
 
-        std::cout << "Jogador " << jogador_atual << ":" << std::endl;
+        std::cout << "Jogador " << num_jogador.at(jogador_atual) << ":" << std::endl;
         bool jogada_valida = false;
 
         while (!jogada_valida) {
@@ -98,57 +103,26 @@ void Partida::jogar_partida(JogoTabuleiro& jogo) {
     jogo.imprimir_tabuleiro();
 
     if (vitoria) {
-        std::cout << "Jogador " << jogador_atual << " venceu!" << std::endl;
-
+        std::cout << "Jogador " << num_jogador.at(jogador_atual) << " venceu!" << std::endl;
+        return num_jogador.at(jogador_atual);
     } else {
         std::cout << "Empate!" << std::endl;
+        return " ";
     }
 }
 
-void Partida::iniciar_jogo() {
-    int escolha;
-
-    while (true) {
-        std::cout << "Escolha um jogo:" << std::endl;
-        std::cout << "1. Reversi" << std::endl;
-        std::cout << "2. Tic Tac Toe" << std::endl;
-        std::cout << "3. Connect Four" << std::endl;
-        std::cout << "4. Sair" << std::endl;
-        std::cout << "Opcão: ";
-
-        std::cin >> escolha;
-
-        if (std::cin.fail()) {
-            std::cout << "Entrada inválida. Digite um número inteiro entre 1 e 4" << std::endl;
-            std::cin.clear(); 
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            continue; 
-        }
-
-        if (escolha == 4) {
-            break;
-        }
-
-        switch (escolha) {
-            case 1: {
-                Reversi reversi;
-                jogar_partida(reversi);
-                break;
-            }
-            case 2: {
-                TicTacToe tictactoe;
-                jogar_partida(tictactoe);
-                break;
-            }
-            case 3: {
-                ConnectFour connectfour;
-                jogar_partida(connectfour);
-                break;
-            }
-            default: {
-                std::cout << "Entrada inválida. Digite um número inteiro entre 1 e 4" << std::endl;
-                break;
-            }
-        }
-    }
+std::string Partida::iniciar_jogo(std::string jogo, std::string jogador_1, std::string jogador_2) {
+    if (jogo == "R") {
+        Reversi reversi;
+        auto test = jogar_partida(reversi, jogador_1, jogador_2);
+        return test;
+    } else if (jogo == "L") {
+        ConnectFour connectfour;
+        auto test = jogar_partida(connectfour, jogador_1, jogador_2);
+        return test;
+    } else {
+        TicTacToe tictactoe;
+        auto test = jogar_partida(tictactoe, jogador_1, jogador_2);
+        return test;
+    } 
 }

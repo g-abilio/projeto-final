@@ -11,7 +11,7 @@ class Partida {
         Partida() {};
 
         // metodo que escolhe qual jogo executar
-        void iniciar_jogo(); 
+        std::string iniciar_jogo(std::string jogo, std::string jogador_1, std::string jogador_2); 
 
     private: 
 
@@ -19,7 +19,7 @@ class Partida {
         std::vector<int> ler_jogada(const JogoTabuleiro& jogo); 
 
         // metodo que executa uma partida
-        void jogar_partida(JogoTabuleiro& jogo);
+        std::string jogar_partida(JogoTabuleiro& jogo, std::string jogador_1, std::string jogador_2);
 };
 
 #endif
