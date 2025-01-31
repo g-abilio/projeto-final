@@ -1,6 +1,11 @@
 #ifndef JOGO_TABULEIRO_HPP
 #define JOGO_TABULEIRO_HPP
 
+#define RESET   "\033[0m"
+#define BOLD    "\033[1m"
+#define BLUE    "\033[34m"
+#define CYAN    "\033[36m"
+
 #include <vector>
 #include <string>
 #include <iostream>

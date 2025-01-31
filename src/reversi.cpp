@@ -192,7 +192,85 @@ bool Reversi::verificar_vitoria(int jogador) const {
  * @brief Exibe uma mensagem de boas-vindas ao jogo.
  */
 void Reversi::boas_vindas() const {
-    std::cout << "Bem-vindo ao Reversi!\n";
+    std::vector<std::vector<std::string> > letras;
+
+    std::vector<std::string> r;
+    r.push_back(std::string(BOLD) + std::string(CYAN) +    " ███████╗  " + std::string(RESET));
+    r.push_back(std::string(BOLD) + std::string(CYAN) +   " ██╔═══██ " + std::string(RESET));
+    r.push_back(std::string(BOLD) + std::string(BLUE) +  " ██║   ██ " + std::string(RESET));
+    r.push_back(std::string(BOLD) + std::string(BLUE) + " ██████═╝ " + std::string(RESET));
+    r.push_back(std::string(BOLD) + std::string(BLUE) + " ██╔═══██╗ " + std::string(RESET));
+    r.push_back(std::string(BOLD) + std::string(BLUE) + " ╚═╝   ╚═╝ " + std::string(RESET));
+    letras.push_back(r);
+
+    std::vector<std::string> e;
+    e.push_back(std::string(BOLD) + std::string(CYAN) + " ██████╗ " + std::string(RESET));
+    e.push_back(std::string(BOLD) + std::string(CYAN) +   "  ██╔═══╝" + std::string(RESET));
+    e.push_back(std::string(BOLD) + std::string(BLUE) +   "  █████╗  " + std::string(RESET));
+    e.push_back(std::string(BOLD) + std::string(BLUE) +  "  ██╔══╝  " + std::string(RESET));
+    e.push_back(std::string(BOLD) + std::string(BLUE) +  " ██████╗ " + std::string(RESET));
+    e.push_back(std::string(BOLD) + std::string(BLUE) + " ╚═════╝ " + std::string(RESET));
+    letras.push_back(e);
+
+    std::vector<std::string> v;
+    v.push_back(std::string(BOLD) + std::string(CYAN) + " ██╗   ██╗" + std::string(RESET));
+    v.push_back(std::string(BOLD) + std::string(CYAN) + "  ██║   ██║" + std::string(RESET));
+    v.push_back(std::string(BOLD) + std::string(BLUE) + " ██║   ██║" + std::string(RESET));
+    v.push_back(std::string(BOLD) + std::string(BLUE) + " ██║   ██║" + std::string(RESET));
+    v.push_back(std::string(BOLD) + std::string(BLUE) + " ╚██╗ ██╔╝" + std::string(RESET));
+    v.push_back(std::string(BOLD) + std::string(BLUE) + "  ╚████╔╝ " + std::string(RESET));
+    letras.push_back(v);
+
+    std::vector<std::string> e2;
+    e2.push_back(std::string(BOLD) + std::string(CYAN) + " ██████╗ " + std::string(RESET));
+    e2.push_back(std::string(BOLD) + std::string(CYAN) +   " ██╔═══╝" + std::string(RESET));
+    e2.push_back(std::string(BOLD) + std::string(BLUE) +   " █████╗  " + std::string(RESET));
+    e2.push_back(std::string(BOLD) + std::string(BLUE) +  " ██╔══╝  " + std::string(RESET));
+    e2.push_back(std::string(BOLD) + std::string(BLUE) +  " ██████╗ " + std::string(RESET));
+    e2.push_back(std::string(BOLD) + std::string(BLUE) + " ╚═════╝ " + std::string(RESET));
+    letras.push_back(e2);
+
+    std::vector<std::string> r2;
+    r2.push_back(std::string(BOLD) + std::string(CYAN) +    " ███████╗  " + std::string(RESET));
+    r2.push_back(std::string(BOLD) + std::string(CYAN) +   "  ██╔═══██ " + std::string(RESET));
+    r2.push_back(std::string(BOLD) + std::string(BLUE) +  " ██║   ██ " + std::string(RESET));
+    r2.push_back(std::string(BOLD) + std::string(BLUE) + " ██████═╝ " + std::string(RESET));
+    r2.push_back(std::string(BOLD) + std::string(BLUE) + " ██╔═══██╗ " + std::string(RESET));
+    r2.push_back(std::string(BOLD) + std::string(BLUE) + " ╚═╝   ╚═╝ " + std::string(RESET));
+    letras.push_back(r2);
+
+    std::vector<std::string> s;
+    s.push_back(std::string(BOLD) + std::string(CYAN) +   " ██████╗ " + std::string(RESET));
+    s.push_back(std::string(BOLD) + std::string(CYAN) +   " ██╔════╝ " + std::string(RESET));
+    s.push_back(std::string(BOLD) + std::string(BLUE) +  " ╚█████╗  " + std::string(RESET));
+    s.push_back(std::string(BOLD) + std::string(BLUE) + "  ╚═══██╗ " + std::string(RESET));
+    s.push_back(std::string(BOLD) + std::string(BLUE) + " ██████║ " + std::string(RESET));
+    s.push_back(std::string(BOLD) + std::string(BLUE) +" ╚═════╝  " + std::string(RESET));
+    letras.push_back(s);
+
+    std::vector<std::string> i;
+    i.push_back(std::string(BOLD) + std::string(CYAN) +  " ██╗" + std::string(RESET));
+    i.push_back(std::string(BOLD) + std::string(CYAN) +  " ██║" + std::string(RESET));
+    i.push_back(std::string(BOLD) + std::string(BLUE) + " ██║" + std::string(RESET));
+    i.push_back(std::string(BOLD) + std::string(BLUE) + " ██║" + std::string(RESET));
+    i.push_back(std::string(BOLD) + std::string(BLUE) + " ██║" + std::string(RESET));
+    i.push_back(std::string(BOLD) + std::string(BLUE) +  "══╝" + std::string(RESET));
+    letras.push_back(i);
+
+    int max_linhas_letra = 6;
+
+    for (int i = 0; i < max_linhas_letra; ++i) {
+        for (int j = 0; j < letras.size(); ++j) {
+            if (i < letras[j].size()) {
+                std::cout << letras[j][i];
+            } else {
+                std::cout << " ";
+            }
+        }
+        std::cout << std::endl;
+    }
+
+    std::cout << std::endl;
 }
 
 /**
