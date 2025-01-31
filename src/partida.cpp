@@ -114,15 +114,12 @@ std::string Partida::jogar_partida(JogoTabuleiro& jogo, std::string jogador_1, s
 std::string Partida::iniciar_jogo(std::string jogo, std::string jogador_1, std::string jogador_2) {
     if (jogo == "R") {
         Reversi reversi;
-        auto test = jogar_partida(reversi, jogador_1, jogador_2);
-        return test;
+        return jogar_partida(reversi, jogador_1, jogador_2);
     } else if (jogo == "L") {
         ConnectFour connectfour;
-        auto test = jogar_partida(connectfour, jogador_1, jogador_2);
-        return test;
+        return jogar_partida(connectfour, jogador_1, jogador_2);
     } else {
         TicTacToe tictactoe;
-        auto test = jogar_partida(tictactoe, jogador_1, jogador_2);
-        return test;
+        return jogar_partida(tictactoe, jogador_1, jogador_2);
     } 
 }
