@@ -1,17 +1,26 @@
 #include "tic_tac_toe.hpp"
 
+/**
+ * @brief Construtor da classe TicTacToe que inicializa o tabuleiro.
+ */
 TicTacToe::TicTacToe() {
     linhas = 3;
     colunas = 3;
     tabuleiro = std::vector<std::vector<int> >(linhas, std::vector<int>(colunas, 0));
 }
 
+/**
+ * @brief Inicializa o tabuleiro zerando todas as posicoes.
+ */
 void TicTacToe::inicializar_tabuleiro() {
     for (auto& linha : tabuleiro) {
         std::fill(linha.begin(), linha.end(), 0);
     }
 }
 
+/**
+ * @brief Imprime o tabuleiro no consle.
+ */
 void TicTacToe::imprimir_tabuleiro() const {
     for (const auto& linha : tabuleiro) {
         for (const auto& celula : linha) {
@@ -23,6 +32,16 @@ void TicTacToe::imprimir_tabuleiro() const {
     std::cout << std::endl;
 }
 
+/**
+ * @brief Realiza uma jogada no tabuleiro.
+ * 
+ * @param int jogador Numero do jogador (1 ou 2).
+ * @param std::vector<int> posicao Vetor contendo a linha e a coluna da jogada.
+ * @return bool Retorna true se a jogada for valida e realizada com sucesso.
+ * 
+ * @exception std::invalid_argument Se a posicao informada for invalida.
+ * @exception std::runtime_error Se a posicao ja estiver ocupada.
+ */
 bool TicTacToe::realizar_jogada(int jogador, const std::vector<int>& posicao) {
     if (posicao.size() != 2) {
         throw std::invalid_argument("tic tac toe requer linha e coluna");
@@ -42,6 +61,12 @@ bool TicTacToe::realizar_jogada(int jogador, const std::vector<int>& posicao) {
     return true;
 }
 
+/**
+ * @brief Verifica se um jogador venceu a partida
+ * 
+ * @param int jogador Numero do jogador (1 ou 2).
+ * @return bool Retorna true se o jogador venceu.
+ */
 bool TicTacToe::verificar_vitoria(int jogador) const {
     // verifica linhas
     for (int i = 0; i < linhas; ++i) {
@@ -69,6 +94,9 @@ bool TicTacToe::verificar_vitoria(int jogador) const {
     return false;
 }
 
+/**
+ * @brief Exibe uma mensagem de boas-vindas ao jogo.
+ */
 void TicTacToe::boas_vindas() const {
     std::cout << "Bem-vindo ao Tic Tac Toe!\n";
 }

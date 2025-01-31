@@ -1,6 +1,9 @@
 #include "reversi.hpp"
 #include <iostream> 
 
+/**
+ * @brief Construtor padrao da classe Reversi, inicializa o tabuleiro.
+ */
 Reversi::Reversi() : simbolos_jogadores("XO") {
     linhas = 8;
     colunas = 8;
@@ -9,6 +12,11 @@ Reversi::Reversi() : simbolos_jogadores("XO") {
     inicializar_tabuleiro();
 }
 
+/**
+ * @brief Construtor da classe Reversi, permitindo definir os simbolos dos jogadores.
+ * 
+ * @param std::string simbolos_jogadores Simbolos representando os jogadores no tabuleiro.
+ */
 Reversi::Reversi(const std::string& simbolos_jogadores) : simbolos_jogadores(simbolos_jogadores) {
     linhas = 8;
     colunas = 8;
@@ -16,6 +24,9 @@ Reversi::Reversi(const std::string& simbolos_jogadores) : simbolos_jogadores(sim
     inicializar_tabuleiro();
 }
 
+/**
+ * @brief Inicializa o tabuleiro com a configuracao inicial padrao do jogo.
+ */
 void Reversi::inicializar_tabuleiro() {
     limpar_tabuleiro();
     tabuleiro[3][3] = 1;
@@ -24,6 +35,9 @@ void Reversi::inicializar_tabuleiro() {
     tabuleiro[4][4] = 1;
 }
 
+/**
+ * @brief Imprime o tabuleiro no console
+ */
 void Reversi::imprimir_tabuleiro() const{
     for (const auto& linha : tabuleiro) {
         for (int celula : linha) {
@@ -34,10 +48,22 @@ void Reversi::imprimir_tabuleiro() const{
     }
 }
 
+/**
+ * @brief Define o estado do tabuleiro com uma matriz de valores.
+ * 
+ * @param std::vector<std::vector<int>> novo_tabuleiro Matriz com os valores do novo estado do tabuleiro.
+ */
 void Reversi::set_tabuleiro(const std::vector<std::vector<int>>& novo_tabuleiro) {
     tabuleiro = novo_tabuleiro;
 }
 
+/**
+ * @brief Realiza uma jogada no tabuleiro, verificando sua validade.
+ * 
+ * @param int jogador Numero do jogador (1 ou 2).
+ * @param std::vector<int> posicao Vetor contendo a posicao [linha, coluna] da jogada.
+ * @return bool Retorna true se a jogada for valida e executada.
+ */
 bool Reversi::realizar_jogada(int jogador, const std::vector<int>& posicao) {
     int linha = posicao[0];
     int coluna = posicao[1];
@@ -94,6 +120,13 @@ bool Reversi::realizar_jogada(int jogador, const std::vector<int>& posicao) {
     return true;
 }
 
+/**
+ * @brief Verifica se um jogador pode realizar uma jogada valida.
+ * 
+ * @param int jogador Numero do jogador (1 ou 2).
+ * @param std::vector<int> posicao Vetor contendo a posicao [linha, coluna] da jogada.
+ * @return bool Retorna true se a jogada for valida.
+ */
 bool Reversi::pode_realizar_jogada(int jogador, const std::vector<int>& posicao) const {
     int linha = posicao[0];
     int coluna = posicao[1];
@@ -130,9 +163,12 @@ bool Reversi::pode_realizar_jogada(int jogador, const std::vector<int>& posicao)
     return false; // nenhuma direcao valida encontrada
 }
 
-bool Reversi::verificar_vitoria(int jogador) const {
-    bool algum_jogador_pode_jogar = false;
-
+/**
+ * @brief Verifica se o jogo acabou.
+ * 
+ * @return bool Retorna true se nenhum jogador puder mais jogar, indicando fim de jogo.
+ */
+bool Reversi::verificar_vitoria() const {
     // verifica se algum jogador ainda pode jogar
     for (int j = 1; j <= 2; j++) { // verifica para ambos os jogadores
         for (int i = 0; i < linhas; ++i) {
@@ -150,10 +186,16 @@ bool Reversi::verificar_vitoria(int jogador) const {
     return !algum_jogador_pode_jogar;
 }
 
+/**
+ * @brief Exibe uma mensagem de boas-vindas ao jogo.
+ */
 void Reversi::boas_vindas() const {
     std::cout << "Bem-vindo ao Reversi!\n";
 }
 
+/**
+ * @brief Exibe os resultados do jogo, contando o numero de pecas de cada jogador e determinando o vencedor
+ */
 void Reversi::exibir_resultados() const {
     int contagem[2] = {0, 0};
 
@@ -177,22 +219,28 @@ void Reversi::exibir_resultados() const {
     }
 }
 
-void Reversi::inverter_pecas_direcao(char simbolo_jogador, int linha, int incremento_linha, int coluna, int incremento_coluna) {
+/**
+ * @brief Inverte as pecas do adversario em uma direcao específica se vlido.
+ * 
+ * @param char simbolo_jogador Simbolo do jogador ('X' ou 'O').
+ * @param int linha Linha inicial da jogada.
+ * @param int incremento_linha Direção do deslocamento na linha.
+ * @param int coluna Coluna inicial da jogada.
+ * @param int incremento_coluna Direcao do deslocamento na coluna.
+ */
+void Reversi::inverter_pecas_direcao(int valor_jogador, int linha, int incremento_linha, int coluna, int incremento_coluna) {
+    std::vector<std::pair<int, int>> pecas_para_inverter;
     int l = linha + incremento_linha;
     int c = coluna + incremento_coluna;
-    std::vector<std::pair<int, int> > pecas_para_inverter;
 
-    // converte simbolo para numero (1 para 'X', 2 para 'O')
-    int valor_jogador = (simbolo_jogador == 'X') ? 1 : 2;
-
-    // percorre a direcao verificando se pode inverter as pecas
+    // percorre a direcao verificando se há peças do adversario para inverter
     while (esta_dentro_do_tabuleiro(l, c) && tabuleiro[l][c] != 0 && tabuleiro[l][c] != valor_jogador) {
-        pecas_para_inverter.push_back({l, c});
+        pecas_para_inverter.emplace_back(l, c);
         l += incremento_linha;
         c += incremento_coluna;
     }
-    
-    // so inverte se terminou em uma peca do jogador atual
+
+    // verifica se encontrou uma peca do proprio jogador ao final da sequencia
     if (esta_dentro_do_tabuleiro(l, c) && tabuleiro[l][c] == valor_jogador) {
         for (const auto& pos : pecas_para_inverter) {
             tabuleiro[pos.first][pos.second] = valor_jogador;
@@ -200,6 +248,13 @@ void Reversi::inverter_pecas_direcao(char simbolo_jogador, int linha, int increm
     }
 }
 
+/**
+ * @brief Verifica se uma posição esta dentro dos limites do tabuleiro.
+ * 
+ * @param int linha Indice da linha a ser verificada.
+ * @param int coluna Indice da coluna a ser verificada.
+ * @return bool Retorna true se a posicao estiver dentro dos limites do tabuleiro, caso contrario, retorna false.
+ */
 bool Reversi::esta_dentro_do_tabuleiro(int linha, int coluna) const {
     return linha >= 0 && linha < linhas && coluna >= 0 && coluna < colunas;
 }

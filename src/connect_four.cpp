@@ -1,17 +1,26 @@
 #include "connect_four.hpp"
 
+/**
+ * @brief Construtor da classe ConnectFour, inicializa o tabuleiro.
+ */
 ConnectFour::ConnectFour() {
     linhas = 6;
     colunas = 7;
     tabuleiro = std::vector<std::vector<int> >(linhas, std::vector<int>(colunas, 0));
 }
 
+/**
+ * @brief Reinicializa o tabuleiro preenchendo com zeros.
+ */
 void ConnectFour::inicializar_tabuleiro(){
     for (auto& linha : tabuleiro) {
         std::fill(linha.begin(), linha.end(), 0);
     }
 }
 
+/**
+ * @brief Imprime o tabuleiro no console
+ */
 void ConnectFour::imprimir_tabuleiro() const {
     for (const auto& linha : tabuleiro) {
         for (const auto& celula : linha) {
@@ -23,6 +32,16 @@ void ConnectFour::imprimir_tabuleiro() const {
     std::cout << std::endl;
 }
 
+/**
+ * @brief Realiza uma jogada no tabuleiro.
+ * 
+ * @param int jogador Numero do jogador (1 ou 2).
+ * @param std::vector<int> posicao Vetor contendo a coluna onde a peca sera inserida.
+ * @return bool Retorna true se a jogada for bem-sucedida.
+ * 
+ * @exception std::invalid_argument Se a posicao informada não for valida.
+ * @exception std::runtime_error Se a coluna estiver cheia.
+ */
 bool ConnectFour::realizar_jogada(int jogador, const std::vector<int>& posicao) {
     if (posicao.size() != 1) {
         throw std::invalid_argument("connect four requer apenas a coluna");
@@ -43,6 +62,12 @@ bool ConnectFour::realizar_jogada(int jogador, const std::vector<int>& posicao) 
     throw std::runtime_error("coluna cheia");
 }
 
+/**
+ * @brief Verifica se um jogador venceu a partida.
+ * 
+ * @param int jogador Numero do jogador (1 ou 2).
+ * @return bool Retorna true se o jogador venceu.
+ */
 bool ConnectFour::verificar_vitoria(int jogador) const {
     // verifica linhas
     for (int i = 0; i < linhas; ++i) {
@@ -87,6 +112,9 @@ bool ConnectFour::verificar_vitoria(int jogador) const {
     return false;
 }
 
+/**
+ * @brief Exibe uma mensagem de boas-vindas ao jogo.
+ */
 void ConnectFour::boas_vindas() const {
     std::cout << "Bem-vindo ao Connect4!\n";
 }
