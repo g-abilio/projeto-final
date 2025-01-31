@@ -88,5 +88,56 @@ bool ConnectFour::verificar_vitoria(int jogador) const {
 }
 
 void ConnectFour::boas_vindas() const {
-    std::cout << "Bem-vindo ao Connect4!\n";
+    std::vector<std::vector<std::string> > letras;
+ 
+    std::vector<std::string> l;
+    l.push_back(std::string(BOLD) + std::string(CYAN) + " ██╗    " + std::string(RESET));
+    l.push_back(std::string(BOLD) + std::string(CYAN) + " ██║    " + std::string(RESET));
+    l.push_back(std::string(BOLD) + std::string(BLUE) + " ██║    " + std::string(RESET));
+    l.push_back(std::string(BOLD) + std::string(BLUE) + " ██║    " + std::string(RESET));
+    l.push_back(std::string(BOLD) + std::string(BLUE) + " ██████╗ " + std::string(RESET));
+    l.push_back(std::string(BOLD) + std::string(BLUE) + " ╚═════╝ " + std::string(RESET));
+    letras.push_back(l);
+
+    std::vector<std::string> i;
+    i.push_back(std::string(BOLD) + std::string(CYAN) + "  ██╗" + std::string(RESET));
+    i.push_back(std::string(BOLD) + std::string(CYAN) + "  ██║" + std::string(RESET));
+    i.push_back(std::string(BOLD) + std::string(BLUE) + "  ██║" + std::string(RESET));
+    i.push_back(std::string(BOLD) + std::string(BLUE) + "  ██║" + std::string(RESET));
+    i.push_back(std::string(BOLD) + std::string(BLUE) + " ██║" + std::string(RESET));
+    i.push_back(std::string(BOLD) + std::string(BLUE) + " ══╝" + std::string(RESET));
+    letras.push_back(i);
+     
+    std::vector<std::string> g;
+    g.push_back(std::string(BOLD) + std::string(CYAN) + "  ██████╗ " + std::string(RESET));
+    g.push_back(std::string(BOLD) + std::string(CYAN) + " ██╔════╝ " + std::string(RESET));
+    g.push_back(std::string(BOLD) + std::string(BLUE) + " ██║ ████╗" + std::string(RESET));
+    g.push_back(std::string(BOLD) + std::string(BLUE) + " ██║   ██║" + std::string(RESET));
+    g.push_back(std::string(BOLD) + std::string(BLUE) + " ██╚═══██║" + std::string(RESET));
+    g.push_back(std::string(BOLD) + std::string(BLUE) + " ╚██████═╝" + std::string(RESET));
+    letras.push_back(g);
+
+    std::vector<std::string> quatro;
+    quatro.push_back(std::string(BOLD) + std::string(CYAN) + " ██╗  ██╗" + std::string(RESET));
+    quatro.push_back(std::string(BOLD) + std::string(CYAN) + " ██║  ██║" + std::string(RESET));
+    quatro.push_back(std::string(BOLD) + std::string(BLUE) + " ███████║" + std::string(RESET));
+    quatro.push_back(std::string(BOLD) + std::string(BLUE) + "  ╚═══██║" + std::string(RESET));
+    quatro.push_back(std::string(BOLD) + std::string(BLUE) + "      ██║" + std::string(RESET));
+    quatro.push_back(std::string(BOLD) + std::string(BLUE) + "      ╚═╝" + std::string(RESET));
+    letras.push_back(quatro);
+
+    int max_linhas_letra = 6;
+
+    for (int i = 0; i < max_linhas_letra; ++i) {
+        for (int j = 0; j < letras.size(); ++j) {
+            if (i < letras[j].size()) {
+                std::cout << letras[j][i];
+            } else {
+                std::cout << " ";
+            }
+        }
+        std::cout << std::endl;
+    }
+
+    std::cout << std::endl;
 }
