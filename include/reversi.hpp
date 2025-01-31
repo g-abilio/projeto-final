@@ -11,12 +11,9 @@ public:
     Reversi() : simbolos_jogadores("XO") {
         linhas = 8;
         colunas = 8;
-<<<<<<< HEAD
         tabuleiro = std::vector<std::vector<int> >(linhas, std::vector<int>(colunas, 0));
-=======
         tabuleiro.resize(linhas, std::vector<int>(colunas, 0));
         inicializar_tabuleiro();
->>>>>>> dev-jogo-reversi
     }
 
     Reversi(const std::string& simbolos_jogadores) : simbolos_jogadores(simbolos_jogadores) {
@@ -78,7 +75,7 @@ public:
         return true;
     }
 
-    void exibir_boas_vindas() const {
+    void boas_vindas() const override {
         std::cout << "Bem-vindo ao Reversi!\n";
     }
 
@@ -111,7 +108,7 @@ private:
     void inverter_pecas_direcao(char simbolo_jogador, int linha, int incremento_linha, int coluna, int incremento_coluna) {
         int l = linha + incremento_linha;
         int c = coluna + incremento_coluna;
-        std::vector<std::pair<int, int>> pecas_para_inverter;
+        std::vector<std::pair<int, int> > pecas_para_inverter;
 
         // converte simbolo para numero (1 para 'X', 2 para 'O')
         int valor_jogador = (simbolo_jogador == 'X') ? 1 : 2;

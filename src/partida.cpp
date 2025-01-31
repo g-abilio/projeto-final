@@ -72,6 +72,8 @@ std::string Partida::jogar_partida(JogoTabuleiro& jogo, std::string jogador_1, s
     num_jogador.insert(std::pair<int, std::string>(1, jogador_1));
     num_jogador.insert(std::pair<int, std::string>(2, jogador_2));
 
+    jogo.boas_vindas();
+
     while (!vitoria && jogadas_realizadas < jogo.get_linhas() * jogo.get_colunas()) {
         jogo.imprimir_tabuleiro();
 

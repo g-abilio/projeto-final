@@ -98,6 +98,11 @@ public:
 
         return false;
     }
+
+    void boas_vindas() const override {
+        std::cout << "Bem-vindo ao Connect4!\n";
+    }
+
 };
 
 #endif

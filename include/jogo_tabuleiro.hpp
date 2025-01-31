@@ -15,6 +15,7 @@ public:
     virtual void imprimir_tabuleiro() const = 0;
     virtual bool realizar_jogada(int jogador, const std::vector<int>& posicao) = 0;
     virtual bool verificar_vitoria(int jogador) const = 0;
+    virtual void boas_vindas() const = 0;
 
     // getters
     int get_linhas() const { return linhas; }
