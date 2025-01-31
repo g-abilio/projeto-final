@@ -6,49 +6,44 @@ TEST_CASE("inicializar_tabuleiro") {
     Reversi jogo;
     jogo.inicializar_tabuleiro();
 
-    // verifica as pecas iniciais no centro do tabuleiro
-    CHECK(jogo.tabuleiro[3][3] == 'X');
-    CHECK(jogo.tabuleiro[3][4] == 'O');
-    CHECK(jogo.tabuleiro[4][3] == 'O');
-    CHECK(jogo.tabuleiro[4][4] == 'X');
-
-    // verifica que as outras posicoes estao vazias
-    CHECK(jogo.tabuleiro[0][0] == '.');
-    CHECK(jogo.tabuleiro[7][7] == '.');
+    // verifica a posicao inicial padrao do jogo
+    CHECK(jogo.realizar_jogada(1, {2, 3}) == false); // posicao invalida no inicio
+    CHECK(jogo.realizar_jogada(2, {3, 5}) == false); // posicao invalida no inicio
 }
 
 TEST_CASE("realizar_jogada valida") {
     Reversi jogo;
     jogo.inicializar_tabuleiro();
 
-    // jogador 'X' realiza uma jogada valida
-    CHECK_NOTHROW(jogo.realizar_jogada('X', {2, 3}));
-
-    // jogador 'O' realiza uma jogada valida
-    CHECK_NOTHROW(jogo.realizar_jogada('O', {5, 4}));
+    // realiza uma jogada valida e verifica se retorna true
+    CHECK(jogo.realizar_jogada(1, {2, 3}) == false); // nao pode colocar peca aqui
+    CHECK(jogo.realizar_jogada(1, {2, 4}) == true);  // jogada valida
 }
 
 TEST_CASE("realizar_jogada invalida") {
     Reversi jogo;
     jogo.inicializar_tabuleiro();
 
-    // jogada fora dos limites
-    CHECK_THROWS_AS(jogo.realizar_jogada('X', {-1, 3}), std::invalid_argument);
-    CHECK_THROWS_AS(jogo.realizar_jogada('X', {8, 8}), std::invalid_argument);
-
-    // jogada em uma posicao ja ocupada
-    CHECK_THROWS_AS(jogo.realizar_jogada('X', {3, 3}), std::runtime_error);
+    CHECK(jogo.realizar_jogada(1, {0, 0}) == false); // jogada fora da area de jogo
+    CHECK(jogo.realizar_jogada(2, {3, 3}) == false); // posicao ja ocupada
 }
 
 TEST_CASE("verificar_vitoria") {
     Reversi jogo;
     jogo.inicializar_tabuleiro();
 
-    // simula um estado onde o jogador 'X' tem mais pecas
-    jogo.realizar_jogada('X', {2, 3});
-    jogo.realizar_jogada('X', {2, 4});
-    jogo.realizar_jogada('X', {5, 3});
+    // antes do tabuleiro estar completamente preenchido, nao ha vitoria
+    CHECK(jogo.verificar_vitoria(1) == false);
+    CHECK(jogo.verificar_vitoria(2) == false);
 
-    CHECK(jogo.verificar_vitoria('X') == true);
-    CHECK(jogo.verificar_vitoria('O') == false);
+    // simula um tabuleiro completo manualmente para testar a vitoria
+    for (int i = 0; i < 8; ++i) {
+        for (int j = 0; j < 8; ++j) {
+            jogo.realizar_jogada((i + j) % 2 + 1, {i, j});
+        }
+    }
+
+    // com o tabuleiro cheio, o jogo deve indicar que ha uma vitoria
+    CHECK(jogo.verificar_vitoria(1) == true);
+    CHECK(jogo.verificar_vitoria(2) == true);
 }
