@@ -18,7 +18,11 @@ public:
 
     void imprimir_tabuleiro() const override;
 
+    void set_tabuleiro(const std::vector<std::vector<int>>& novo_tabuleiro);
+
     bool realizar_jogada(int jogador, const std::vector<int>& posicao) override;
+
+    bool pode_realizar_jogada(int jogador, const std::vector<int>& posicao) const;
 
     bool verificar_vitoria(int jogador) const override;
 
