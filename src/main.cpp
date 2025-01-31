@@ -5,6 +5,15 @@
 #include <map>
 
 int main() {
+
+/**
+ * @file jogadores.txt
+ * @brief Leitura do histórico dos jogadores gravados a cada execução.
+ *
+ * Este arquivo contém os atributos dos jogadores em ordem de leitura:
+ * apelido, nome, e seis inteiros que são as vitórias e derrotas nos jogos.
+ */
+
     //Abrir o arquivo
     std::ifstream arquivo("jogadores.txt");
 
@@ -30,6 +39,14 @@ int main() {
     arquivo.close();
 
     auto novo_jogadores_a = menuJogos(jogadores_a, jogadores_n);
+
+    /**
+    * @file jogadores.txt
+    * @brief Gravação do histórico dos jogadores após execução do código.
+    *
+    * Este arquivo grava os atributos dos jogadores após execuções
+    * de partidas e cadastro e remoção de jogadores.
+    */
 
     //Abrindo o arquivo para grava��o
     std::ofstream historico("jogadores.txt");
