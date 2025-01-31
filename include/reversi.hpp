@@ -33,7 +33,7 @@ public:
 private:
     std::string simbolos_jogadores;
 
-    void inverter_pecas_direcao(char simbolo_jogador, int linha, int incremento_linha, int coluna, int incremento_coluna);
+    void inverter_pecas_direcao(int simbolo_jogador, int linha, int incremento_linha, int coluna, int incremento_coluna);
 
     bool esta_dentro_do_tabuleiro(int linha, int coluna) const;
 };

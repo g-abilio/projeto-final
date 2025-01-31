@@ -168,7 +168,9 @@ bool Reversi::pode_realizar_jogada(int jogador, const std::vector<int>& posicao)
  * 
  * @return bool Retorna true se nenhum jogador puder mais jogar, indicando fim de jogo.
  */
-bool Reversi::verificar_vitoria() const {
+bool Reversi::verificar_vitoria(int jogador) const {
+    bool algum_jogador_pode_jogar = false;
+
     // verifica se algum jogador ainda pode jogar
     for (int j = 1; j <= 2; j++) { // verifica para ambos os jogadores
         for (int i = 0; i < linhas; ++i) {
