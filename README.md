@@ -93,6 +93,7 @@ Além disso, seguimos o padrão [Conventional Commits](https://www.conventionalc
 ├── bin                     # Arquivos binários compilados
 ├── include                 # Arquivos de cabeçalho (headers)
 ├── obj                     # Objetos compilados
+├── docs                    # Arquivos relacionados à documentação do projeto
 ├── src                     # Arquivos com os códigos fontes principais
 │   ├── data                # Dados do jogo
 ├── tests                   # Testes unitários
@@ -100,6 +101,7 @@ Além disso, seguimos o padrão [Conventional Commits](https://www.conventionalc
 ├── LICENSE                 # Licença do projeto
 ├── README.md               # Documentação do projeto
 ├── Makefile                # Configuração para build
+├── Doxyfile                # Arquivo para gerar documentação
 ```
 
 
