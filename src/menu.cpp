@@ -8,6 +8,15 @@
 #include <set>
 #include <algorithm>
 
+/**
+ * @brief Verifica se uma string é um número.
+ *
+ * Esta função confere se o texto lido é um digito.
+ *
+ * @param string - palavra a ser verificada.
+ * @return true se a string de entrada é um número.
+ * @return false se a string de entrada não é um número.
+ */
 bool isNumber(const std::string& str) {
     if (str.empty()) return false;
     for (char ch : str) {
@@ -18,6 +27,17 @@ bool isNumber(const std::string& str) {
     return true;
 }
 
+/**
+ * @brief Lê uma linha e separa em uma string(apelido),
+ * várias string (nome) e números de vitorias e derrotas.
+ *
+ * Esta função separa o texto lido e guarda na classe Jogador.
+ *
+ * @param linha - linha de texto lida.
+ * @return Um objeto da classe Jogador com todos os atributos lidos.
+ */
+
+// Função para ler a linha do arquivo e guardar as informa��es na classe jogador
 Jogador lerLinha(const std::string& linha) {
     std::istringstream iss(linha);
     Data data;
@@ -52,12 +72,43 @@ Jogador lerLinha(const std::string& linha) {
     return Jogador_x;
 }
 
+/**
+ * @brief Faz comparações com base em critérios de ordenação.
+ *
+ * Esta função compara o total de vitórias de um jogador para
+ * ordenar num ranking, desempatando pelo total de derrotas.
+ *
+ * @param Jogador a - passado por referência.
+ * @param Jogador b - passado por referência.
+ * @return true Se o jogador 'a' deve vir antes de 'b' no ranking.
+ * @return false Se o jogador 'b' deve vir antes de 'a' no ranking.
+ *
+ * @note Critérios de ordenação:
+ * - Prioriza jogadores com mais vitórias.
+ * - Em caso de empate nas vitórias, prioriza jogadores com menos derrotas.
+ */
 bool compararRankingGeral(Jogador& a, Jogador& b) {
     if (a.getTotalVitorias() != b.getTotalVitorias())
         return a.getTotalVitorias() > b.getTotalVitorias(); // Mais vitórias primeiro
     return a.getTotalDerrotas() < b.getTotalDerrotas(); // Menos derrotas como desempate
 }
 
+/**
+ * @brief Faz comparações com base em critérios de ordenação.
+ *
+ * Esta função compara o total de vitórias de um jogador para
+ * ordenar num ranking, desempatando pelo total de derrotas
+ * no jogo Reversi.
+ *
+ * @param Jogador a - passado por referência.
+ * @param Jogador b - passado por referência.
+ * @return true Se o jogador 'a' deve vir antes de 'b' no ranking.
+ * @return false Se o jogador 'b' deve vir antes de 'a' no ranking.
+ *
+ * @note Critérios de ordenação:
+ * - Prioriza jogadores com mais vitórias.
+ * - Em caso de empate nas vitórias, prioriza jogadores com menos derrotas.
+ */
 bool compararRankingReversi(Jogador& a, Jogador& b) {
     int* vetor_a = a.getHistReversi();
     int* vetor_b = b.getHistReversi();
@@ -66,6 +117,22 @@ bool compararRankingReversi(Jogador& a, Jogador& b) {
     return vetor_a[1] < vetor_b[1];
 }
 
+/**
+ * @brief Faz comparações com base em critérios de ordenação.
+ *
+ * Esta função compara o total de vitórias de um jogador para
+ * ordenar num ranking, desempatando pelo total de derrotas
+ * no jogo connect4.
+ *
+ * @param Jogador a - passado por referência.
+ * @param Jogador b - passado por referência.
+ * @return true Se o jogador 'a' deve vir antes de 'b' no ranking.
+ * @return false Se o jogador 'b' deve vir antes de 'a' no ranking.
+ *
+ * @note Critérios de ordenação:
+ * - Prioriza jogadores com mais vitórias.
+ * - Em caso de empate nas vitórias, prioriza jogadores com menos derrotas.
+ */
 bool compararRankingConnect4(Jogador& a,Jogador& b) {
     int* vetor_a = a.getHistConnect4();
     int* vetor_b = b.getHistConnect4();
@@ -74,6 +141,22 @@ bool compararRankingConnect4(Jogador& a,Jogador& b) {
     return vetor_a[1] < vetor_b[1];
 }
 
+/**
+ * @brief Faz comparações com base em critérios de ordenação.
+ *
+ * Esta função compara o total de vitórias de um jogador para
+ * ordenar num ranking, desempatando pelo total de derrotas
+ * no jogo da velha.
+ *
+ * @param Jogador a - passado por referência.
+ * @param Jogador b - passado por referência.
+ * @return true Se o jogador 'a' deve vir antes de 'b' no ranking.
+ * @return false Se o jogador 'b' deve vir antes de 'a' no ranking.
+ *
+ * @note Critérios de ordenação:
+ * - Prioriza jogadores com mais vitórias.
+ * - Em caso de empate nas vitórias, prioriza jogadores com menos derrotas.
+ */
 bool compararRankingTicTacToe(Jogador& a,Jogador& b) {
     int* vetor_a = a.getHistTicTacToe();
     int* vetor_b = b.getHistTicTacToe();
