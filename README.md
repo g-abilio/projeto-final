@@ -16,7 +16,7 @@ Para rodar o projeto, você precisará de:
 
 ```
 - C++ (recomenda-se a versão 11 ou superior)
-- CMake para gerenciamento da build
+- makefile para gerenciamento da build
 - Um compilador compatível (g++, Clang ou MSVC)
 ```
 
@@ -37,21 +37,13 @@ git clone https://github.com/seu_usuario/projeto_final.git
 cd projeto-final
 ```
 
-3. Configure a build com CMake:
-
-```
-mkdir build
-cd build
-cmake ..
-```
-
-4. Compile o projeto:
+3. Compile o projeto:
 
 ```
 make
 ```
 
-5. Execute o jogo:
+4. Execute o jogo:
 
 ```
 ./jogo
@@ -82,7 +74,6 @@ Para implantar o projeto em um sistema ativo, compile o binário e distribua o e
 ## 🛠️ Construído com
 
 * [C++] - Linguagem principal do projeto
-* [CMake] - Ferramenta para geração da build
 * [doctest] - Framework de testes unitários
 
 
