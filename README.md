@@ -115,6 +115,15 @@ Além disso, seguimos o padrão [Conventional Commits](https://www.conventionalc
 ```
 
 
+## 🃏 Cartões CRC
+
+Os cartões CRC (Classe-Responsabilidade-Colaborador) ajudam a visualizar a estrutura das classes e suas interações no projeto. Abaixo está a imagem contendo os cartões CRC utilizados:
+
+![Cartões CRC](docs/CRC.jpg)
+
+Esses cartões representam a relação entre as classes, suas responsabilidades e seus colaboradores, garantindo uma organização clara do projeto.
+
+
 ## ✨ Autores
 
 * **Ana Carolina Carvalho Martins** - [github_link](https://github.com/carolcarvalho-27)
