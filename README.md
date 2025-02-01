@@ -60,19 +60,17 @@ make
 
 ## ⚙️ Executando os testes
 
-Para rodar os testes automatizados do sistema, utilize:
+Para rodar os testes automatizados do sistema, utilize os comandos de linha abaixo:
 
 ```
-make test
-```
+g++ -std=c++11 -o bin/reversitest tests/reversitest.cpp src/reversi.cpp -I include/
+./bin/reversitest
 
+g++ -std=c++11 -o bin/connectfourtest tests/connectfourtest.cpp src/connectfour.cpp -I include/
+./bin/connectfourtest
 
-### 👩‍💻 Analise os testes de ponta a ponta
-
-Os testes verificam a funcionalidade das classes principais do jogo, garantindo que as regras sejam seguidas corretamente.
-
-```
-./run_tests
+g++ -std=c++11 -o bin/tictactoetest tests/tictactoetest.cpp src/tictactoe.cpp -I include/
+./bin/tictactoetest
 ```
 
 
@@ -115,11 +113,21 @@ Além disso, seguimos o padrão [Conventional Commits](https://www.conventionalc
 ```
 
 
+## 🃏 Cartões CRC
+
+Os cartões CRC (Classe-Responsabilidade-Colaborador) ajudam a visualizar a estrutura das classes e suas interações no projeto. Abaixo está a imagem contendo os cartões CRC utilizados:
+
+![Cartões CRC](docs/CRC.jpg)
+
+Esses cartões representam a relação entre as classes, suas responsabilidades e seus colaboradores, garantindo uma organização clara do projeto.
+
+
 ## ✨ Autores
 
 * **Ana Carolina Carvalho Martins** - [github_link](https://github.com/carolcarvalho-27)
 * **Gabriel Abílio Barbosa Ferreira** - [github_link](https://github.com/g-abilio)
 * **Gustavo Rodrigues Monteiro** - [github_link](https://github.com/grmonteiroh)
+* **Pedro Henrique de Medeiros** - [github_link](https://github.com/grmonteiroh)
 
 
 ## 📝 Licença
