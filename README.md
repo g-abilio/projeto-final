@@ -16,7 +16,6 @@ Para rodar o projeto, você precisará de:
 
 ```
 - C++ (recomenda-se a versão 11 ou superior)
-- makefile para gerenciamento da build
 - Um compilador compatível (g++, Clang ou MSVC)
 ```
 
