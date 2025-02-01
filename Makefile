@@ -31,8 +31,9 @@ clean:
 	rm -rf obj jogo testes
 
 # Compilação dos testes com Doctest
-testes: obj/ConnectFourTest.o obj/ReversiTest.o obj/TicTacToeTest.o
-	g++ --std=c++11 -Iinclude -Itests obj/ConnectFourTest.o obj/ReversiTest.o obj/TicTacToeTest.o -o testes
+testes: obj/ConnectFourTest.o obj/ReversiTest.o obj/TicTacToeTest.o obj/ConnectFour.o obj/Jogador.o obj/Menu.o obj/Partida.o obj/Reversi.o obj/TicTacToe.o
+	g++ --std=c++11 -Iinclude -Itests obj/ConnectFourTest.o obj/ReversiTest.o obj/TicTacToeTest.o obj/ConnectFour.o obj/Jogador.o obj/Menu.o obj/Partida.o obj/Reversi.o obj/TicTacToe.o -o testes
+
 
 obj/ConnectFourTest.o: tests/ConnectFourTest.cpp tests/doctest.h include/ConnectFour.hpp
 	g++ --std=c++11 -Iinclude -Itests -c tests/ConnectFourTest.cpp -o obj/ConnectFourTest.o
