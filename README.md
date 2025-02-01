@@ -91,17 +91,17 @@ Além disso, seguimos o padrão [Conventional Commits](https://www.conventionalc
 ```
 .
 ├── bin                     # Arquivos binários compilados
+├── docs                    # Arquivos relacionados à documentação do projeto
 ├── include                 # Arquivos de cabeçalho (headers)
 ├── obj                     # Objetos compilados
-├── docs                    # Arquivos relacionados à documentação do projeto
 ├── src                     # Arquivos com os códigos fontes principais
-│   ├── data                # Dados do jogo
 ├── tests                   # Testes unitários
 ├── .gitignore              # Arquivo de configuração do Git
-├── LICENSE                 # Licença do projeto
-├── README.md               # Documentação do projeto
-├── Makefile                # Configuração para build
 ├── Doxyfile                # Arquivo para gerar documentação
+├── LICENSE                 # Licença do projeto
+├── Makefile                # Configuração para build
+├── README.md               # Documentação do projeto
+├── jogadores.txt           # Arquivo com o histórico dos jogadores
 ```
 
 
