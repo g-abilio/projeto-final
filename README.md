@@ -127,7 +127,7 @@ Esses cartões representam a relação entre as classes, suas responsabilidades 
 * **Ana Carolina Carvalho Martins** - [github_link](https://github.com/carolcarvalho-27)
 * **Gabriel Abílio Barbosa Ferreira** - [github_link](https://github.com/g-abilio)
 * **Gustavo Rodrigues Monteiro** - [github_link](https://github.com/grmonteiroh)
-* **Pedro Henrique de Medeiros** - [github_link](https://github.com/grmonteiroh)
+* **Pedro Henrique de Medeiros** - [github_link](https://github.com/)
 
 
 ## 📝 Licença
