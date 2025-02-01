@@ -15,7 +15,7 @@ int main() {
  */
 
     //Abrir o arquivo
-    std::ifstream arquivo("data/jogadores.txt");
+    std::ifstream arquivo("jogadores.txt");
 
     //Verifica se o arquivo existe e se ele abre
     if (arquivo && !arquivo.is_open()) {
@@ -49,7 +49,7 @@ int main() {
     */
 
     //Abrindo o arquivo para gravacao
-    std::ofstream historico("data/jogadores.txt");
+    std::ofstream historico("jogadores.txt");
 
     if (!historico.is_open()) {
         std::cerr << "Erro ao abrir o arquivo para escrita.\n";
