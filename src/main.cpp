@@ -1,4 +1,4 @@
-#include "menu.hpp"
+#include "Menu.hpp"
 #include <fstream>
 #include <sstream>
 #include <iostream>
@@ -15,7 +15,7 @@ int main() {
  */
 
     //Abrir o arquivo
-    std::ifstream arquivo("jogadores.txt");
+    std::ifstream arquivo("data/jogadores.txt");
 
     //Verifica se o arquivo existe e se ele abre
     if (arquivo && !arquivo.is_open()) {
@@ -26,7 +26,7 @@ int main() {
     std::map<string,Jogador> jogadores_a;
     std::map<string,Jogador> jogadores_n;
 
-    //L� as linhas do arquivo e registra as informa��es dos jogadores em maps
+    //Le as linhas do arquivo e registra as informacoes dos jogadores em maps
     std::string linha;
 
     while (std::getline(arquivo, linha)) {
@@ -48,8 +48,8 @@ int main() {
     * de partidas e cadastro e remoção de jogadores.
     */
 
-    //Abrindo o arquivo para grava��o
-    std::ofstream historico("jogadores.txt");
+    //Abrindo o arquivo para gravacao
+    std::ofstream historico("data/jogadores.txt");
 
     if (!historico.is_open()) {
         std::cerr << "Erro ao abrir o arquivo para escrita.\n";

@@ -1,5 +1,5 @@
-#ifndef JOGO_TABULEIRO_HPP
-#define JOGO_TABULEIRO_HPP
+#ifndef JOGOTABULEIRO_HPP
+#define JOGOTABULEIRO_HPP
 
 #define RESET   "\033[0m"
 #define BOLD    "\033[1m"

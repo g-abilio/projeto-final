@@ -1,4 +1,4 @@
-#include "connect_four.hpp"
+#include "ConnectFour.hpp"
 
 /**
  * @brief Construtor da classe ConnectFour, inicializa o tabuleiro.

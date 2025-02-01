@@ -1,6 +1,6 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
-#include "tic_tac_toe.hpp"
+#include "TicTacToe.hpp"
 
 TEST_CASE("inicializar_tabuleiro") {
     TicTacToe jogo;

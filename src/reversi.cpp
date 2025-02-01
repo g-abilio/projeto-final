@@ -1,4 +1,4 @@
-#include "reversi.hpp"
+#include "Reversi.hpp"
 #include <iostream> 
 
 /**

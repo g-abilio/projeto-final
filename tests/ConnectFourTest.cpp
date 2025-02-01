@@ -1,6 +1,6 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
-#include "connect_four.hpp"
+#include "ConnectFour.hpp"
 
 TEST_CASE("inicializar_tabuleiro") {
     ConnectFour jogo;

@@ -1,7 +1,7 @@
-#ifndef TIC_TAC_TOE_HPP
-#define TIC_TAC_TOE_HPP
+#ifndef TICTACTOE_HPP
+#define TICTACTOE_HPP
 
-#include "jogo_tabuleiro.hpp"
+#include "JogoTabuleiro.hpp"
 #include <iostream>
 #include <stdexcept>
 

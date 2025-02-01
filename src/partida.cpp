@@ -1,7 +1,7 @@
 #include <iostream>
 #include <limits>
 #include <map>
-#include "partida.hpp"
+#include "Partida.hpp"
 
 std::vector<int> Partida::ler_jogada(const JogoTabuleiro& jogo) {
     std::vector<int> posicao;

@@ -1,7 +1,7 @@
 #ifndef REVERSI_HPP
 #define REVERSI_HPP
 
-#include "jogo_tabuleiro.hpp"
+#include "JogoTabuleiro.hpp"
 #include <iostream>
 #include <vector>
 #include <string>

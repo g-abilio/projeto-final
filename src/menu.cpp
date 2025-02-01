@@ -1,6 +1,6 @@
 #include <iostream>
-#include "partida.hpp"
-#include "menu.hpp"
+#include "Partida.hpp"
+#include "Menu.hpp"
 #include <fstream>
 #include <sstream>
 #include <cctype>

@@ -1,10 +1,10 @@
 #ifndef PARTIDA_HPP
 #define PARTIDA_HPP
 
-#include "jogo_tabuleiro.hpp"
-#include "reversi.hpp"
-#include "tic_tac_toe.hpp"
-#include "connect_four.hpp"
+#include "JogoTabuleiro.hpp"
+#include "Reversi.hpp"
+#include "TicTacToe.hpp"
+#include "ConnectFour.hpp"
 
 class Partida {
     public: 

@@ -1,4 +1,4 @@
-#include "tic_tac_toe.hpp"
+#include "TicTacToe.hpp"
 
 /**
  * @brief Construtor da classe TicTacToe que inicializa o tabuleiro.

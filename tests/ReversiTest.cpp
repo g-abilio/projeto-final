@@ -1,6 +1,6 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
-#include "reversi.hpp"
+#include "Reversi.hpp"
 
 TEST_CASE("verificar_vitoria") {
     Reversi jogo;
