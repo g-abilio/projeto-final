@@ -1,7 +1,7 @@
-#ifndef CONNECT_FOUR_HPP
-#define CONNECT_FOUR_HPP
+#ifndef CONNECTFOUR_HPP
+#define CONNECTFOUR_HPP
 
-#include "jogo_tabuleiro.hpp"
+#include "JogoTabuleiro.hpp"
 #include <iostream>
 #include <stdexcept>
 
